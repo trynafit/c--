@@ -1,30 +1,33 @@
 #include<iostream>
 using namespace std;
 int raindrop(int arr[] , int size){
-  int trapwater = 0;
-  int k = 1;
-  int minin;
-  int leftmax = 0;
-  int rightmax = size - 1;
-  while(k<size){
-    if(arr[leftmax]>arr[k] && arr[rightmax]>arr[k]){
-      minin = min(arr[leftmax] , arr[rightmax]);
-      trapwater = trapwater + (minin  - arr[k]);
-      if(arr[leftmax]<arr[leftmax+1]){
-        leftmax++;
-      }
-      k++;
+  int trapwater  = 0;
+   int rightmax = size - 1;
+   int leftmax = 0;
+   int l = 1;
+   int r = size - 2 ;
+   while(leftmax<rightmax){//[8,7,3,1,9]
+    if(arr[leftmax]<arr[rightmax]){
+    if(arr[l]<arr[leftmax]){
+        trapwater = trapwater +(arr[leftmax] - arr[l]);
+        l++;
     }
     else{
-      rightmax--;
-      if(rightmax < k){
-        rightmax = size - 1 ;
-        k++;
-      }
-    }
-  }
+        leftmax++;
+       } 
+       }
+       else{
+        if(arr[rightmax]>arr[rightmax-1]){
+            trapwater = trapwater + (arr[rightmax] - arr[r]);
+            r--;
+        }
+        else{
+            rightmax--;
+        }
+   }  
+}
 
-    return trapwater;
+ return trapwater;
 }
 int main(){
     int a ;
