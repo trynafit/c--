@@ -26,3 +26,4 @@ int main() {
     s.show();
     return 0;
 }
+// just looking like  a wow
