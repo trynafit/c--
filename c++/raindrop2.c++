@@ -6,8 +6,8 @@ int raindrop(int arr[] , int size){
    int leftmax = 0;
    int l = 1;
    int r = size - 2 ;
-   while(leftmax<rightmax){//[8,7,3,1,9]
-    if(arr[leftmax]<arr[rightmax]){
+   while(leftmax<=rightmax){//[8,7,3,1,9]
+    if(arr[leftmax]<=arr[rightmax]){
     if(arr[l]<arr[leftmax]){
         trapwater = trapwater +(arr[leftmax] - arr[l]);
         l++;
@@ -17,12 +17,19 @@ int raindrop(int arr[] , int size){
        } 
        }
        else{
-        if(arr[rightmax]>arr[rightmax-1]){
+        if(arr[rightmax]>arr[r]){
             trapwater = trapwater + (arr[rightmax] - arr[r]);
             r--;
         }
         else{
-            rightmax--;
+            if(arr[rightmax]==arr[r]){
+                r--;
+                rightmax = r;
+            }
+            else{
+            rightmax = r;
+            r--;
+            }
         }
    }  
 }
