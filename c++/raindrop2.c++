@@ -1,51 +1,47 @@
 #include<iostream>
 using namespace std;
 int raindrop(int arr[] , int size){
-  int trapwater  = 0;
-   int rightmax = size - 1;
-   int leftmax = 0;
-   int l = 1;
-   int r = size - 2 ;
-   while(leftmax<=rightmax){//[8,7,3,1,9]
-    if(arr[leftmax]<=arr[rightmax]){
-    if(arr[l]<arr[leftmax]){
-        trapwater = trapwater +(arr[leftmax] - arr[l]);
-        l++;
+int trapwater = 0;
+int leftmax = 0 ;
+int rightmax = size-1;
+int l = 1;
+int r = size-2;
+while(l<=r){
+    if(arr[leftmax]<arr[rightmax]){
+        if(arr[l]<arr[leftmax]){
+        trapwater = trapwater + (arr[leftmax] - arr[l]);
+        l++;}
+       else{
+         leftmax = l;
+        l--;
+        }
     }
     else{
-        leftmax++;
-       } 
-       }
-       else{
-        if(arr[rightmax]>arr[r]){
-            trapwater = trapwater + (arr[rightmax] - arr[r]);
-            r--;
-        }
-        else{
-            if(arr[rightmax]==arr[r]){
-                r--;
-                rightmax = r;
-            }
-            else{
-            rightmax = r;
-            r--;
-            }
-        }
-   }  
+        if(arr[r]<arr[rightmax]){
+   trapwater = trapwater + (arr[rightmax] - arr[r]);
+   r--;
+   }
+    else{
+         rightmax = r;
+        r--;   
+    }
 }
 
- return trapwater;
 }
-int main(){
-    int a ;
-    cout<<"enter the size of array"<<endl;
-    cin>>a;
-    cout<<"enter the array"<<endl;
-    int arr[a];
-    for (int k =0 ;k<a;k++){
-        cin>>arr[k];
-    }
-    int b = raindrop(arr , a);
-    cout<<b;
-    
+return trapwater;
+}
+int main()
+{
+    int a,b ;
+cout<<"enter the number of fucking elements youn wnt to enter"<<endl;
+cin>>a;
+int arr[a];
+cout<<"enter the elements"<<endl;
+
+for(int i =0 ;i<a;i++){
+    cin>>arr[i];
+}
+cout<<endl;
+b = raindrop(arr , a );
+cout<<b;
 }
