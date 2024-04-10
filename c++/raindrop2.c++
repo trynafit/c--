@@ -13,7 +13,7 @@ while(l<=r){
         l++;}
        else{
          leftmax = l;
-        l--;
+        l++;
         }
     }
     else{
