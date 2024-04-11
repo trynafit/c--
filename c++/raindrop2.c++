@@ -33,7 +33,7 @@ return trapwater;
 int main()
 {
     int a,b ;
-cout<<"enter the number of fucking elements youn wnt to enter"<<endl;
+cout<<"enter the number of fucking elements youn want to enter"<<endl;
 cin>>a;
 int arr[a];
 cout<<"enter the elements"<<endl;
