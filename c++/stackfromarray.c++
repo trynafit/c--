@@ -14,7 +14,7 @@ class stack{
 };
 void stack::push(int x){
     if(top >= MAX-1){
-cerr<<"the stack is full no elements can be added\n";
+throw runtime_error("the stack is full no elements can be added\n");
     }
     else{
         arr[++top]= x;
