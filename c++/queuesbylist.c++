@@ -47,3 +47,4 @@ q.dequeue();
 cout<<"front is "<<((q.front == nullptr)?"empty":to_string(q.front -> data))<<endl;
 q.dequeue();
 }
+//klay thompson
