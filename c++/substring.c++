@@ -1,32 +1,42 @@
 #include<iostream>
-#include<string>
+#include<string.h>
 using namespace std;
-string substring(string a){//anpna
-int length = a.length();
-string substring ;
+string substring(string word){//anpna
+int length = word.length();
+int a = 0;
+int b = 1;
+string substring1;
 string substring2;
-for(int k = 0; k<length ;k++){
-     char c = a[k];
-    for(int i = k+1; i<length;i++){
-    if(c!=a[i]){
-   substring2 += a[i];
-   cout<<a[i]<<endl;
-     if(substring2.length()>substring.length())
-   substring = substring2 ;
-   cout<<"the current string is "<<substring<<endl;
-    }
-    
-    else{
-    substring2.clear();
-    }
-    }
-  
+string final;
+substring1+=word[0];//final = a
+while(a<b){
+  if(b==length-1)
+  return final;
+if(word[a]!=word[b]){
+if(a==b){
+substring1 += word[b];
+b++;
+a=0;
+substring2 = substring1;
 }
-return substring;
+else
+a++;
+}
+else{
+b++;
+a=0;
+if(substring2.length()>final.length()){
+  final = substring2;
+}
+substring1.clear();
+}
+}
+return final;
 }
 int main(){
-    string a ;
- cout<<" enter a string "<<endl;
- cin>>a;
- cout << "the substring is "<<substring(a);
+  string word;
+  cout<<"enter a string"<<endl;
+  cin>>word;
+  string final = substring(word);
+  cout<<"the final longest substring without repeating any character is "<<final;
 }
