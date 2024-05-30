@@ -12,7 +12,7 @@ int main(){
     }
     int size = word.length();
     int start = 0 , end = 0 , currelength = 0, maxlenght = 0;
-    for(int end = 0 ; end<size ; end++){
+    for(int end = start; end<size ; end++){
         if(arr[word[end]] == -1 || arr[word[end]]<start){
             currelength += 1;
             temporary += word[end];
