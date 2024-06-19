@@ -7,16 +7,16 @@ int main(){
     cout<<"enter a number"<<endl;
     cin>>a;
     int g = a;//123
-    while(g>d){
+    while(g!=0){
        c = g%10;
         d = (d*10) + c;
         g/=10;
         }
         if(a==d){
-            cout<<"the number is palindrome"<<d;
+            cout<<"the number is palindrome "<<d;
         }
    else{
-    cout<<"the number is not palindrome"<<d;
+    cout<<"the number is not palindrome "<<d;
    }
 
     
