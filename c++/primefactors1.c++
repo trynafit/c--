@@ -7,6 +7,8 @@ cout<<k<<endl;
 b = b/k;
    }
 }
+if (b>1)
+cout<<b<<endl;
     }
 int main()
 {
@@ -15,3 +17,4 @@ int main()
    cout<<"the prime factors are"<<endl;
    primefactors(a);
 }
+//14
