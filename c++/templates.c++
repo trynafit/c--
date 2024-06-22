@@ -9,7 +9,7 @@ class student{
 cout<<"the result is "<< data + moredata<<endl;}
 };
 int main(){
-student<string> k ;
-k.adding(" lavish is the best " ,"yes that is true");
+student<int> k ;
+k.adding(45 ,76);
 }
 //klay thompson
