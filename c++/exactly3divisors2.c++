@@ -33,3 +33,5 @@ int main() {
     cout << exactly3Divisors(a) << endl;
     return 0;
 }
+/*for a number to be exactly divisible by three
+ it should be square of a prime number*/
