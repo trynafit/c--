@@ -2,7 +2,7 @@
 using namespace std;
 class property{
     protected:
-    int wealth ;
+   int  wealth = 35;
     public:
     void show(){
         cout<<"the wealth is "<<wealth<<" crores"<<" in rupees"<<endl;
@@ -15,13 +15,19 @@ class child : private property {
     public:
 child(){
     wealth = 5;
-    show();
 }
+void cahn(){
+    wealth = 32;
+}
+void show(){
+    property::show();
+}
+
 };
 
 int main(){
-    property s ;
     child l;
-    s.show();
+    l.cahn();
+    l.show();
 
 }

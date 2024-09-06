@@ -8,7 +8,7 @@ class demo{
     demo(){
     c = new int ;
     }
-    demo(  demo &j){
+    demo(demo &j){
      a = j.a;
      b = j.b;
      c = new int ;

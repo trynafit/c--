@@ -2,8 +2,8 @@
 using namespace std;
 class k{
     public:
-    int a;
-    int b;
+    int a = 84;
+    int b = 33;
     k(){
         cout<<" the default function is here";
 
@@ -14,7 +14,6 @@ class k{
     }
 };
 int main(){
-    k s = k()
-    k h;
+    k s = k();
     cout<<s.a<<" "<<s.b;
 }
