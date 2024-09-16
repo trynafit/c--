@@ -20,6 +20,4 @@ class demo{
 int main(){
 demo s1(23,54,23);
 s1.d();
-system("cls");
-
 }
