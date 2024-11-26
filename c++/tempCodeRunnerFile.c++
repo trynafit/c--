@@ -1,1 +1,1 @@
-cout<<"passed";
+n-1
