@@ -30,9 +30,9 @@ fifty = 0.5 * len(df)
 df.replace('N/A', np.nan, inplace=True)  
 df = df.dropna(thresh=fifty, axis=1)
 for col in drop_columns:
-    if df[col].dtype == 'Nan':  # Categorical column
+    if df[col].dtype == 'Nan':
         mode_val = df[col].mode()[0]
         df[col].fillna(mode_val, inplace=True)
-    else:  # Numerical column
+    else:  
         median_val = df[col].median()
         df[col].fillna(median_val, inplace=True)
