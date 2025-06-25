@@ -224,3 +224,5 @@ plt.show()
 fig_line = px.line(sales_trend,x='Date',y='total_sales',title='Total Sales Over Time(Plotly express)',markers=True)
 fig_line.update_layout(xaxis_title='Date',yaxis_title='Total Sales')
 fig_line.show()
+# creating scatter plot using namplot.lib
+plt.figure(figsize=(10,6))
