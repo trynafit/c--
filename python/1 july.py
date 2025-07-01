@@ -112,3 +112,6 @@ from sklearn.linear_model import LogisticRegression
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+y_train = Y_train
+y_pred = LogisticRegression().fit(X_train, y_train).predict(X_test)
+print("Logistic Regression Accuracy:", metrics.accuracy_score(Y_test, y_pred))
