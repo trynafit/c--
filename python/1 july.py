@@ -100,3 +100,15 @@ print(x_train)
 from sklearn.linear_model import LinearRegression
 reg = LinearRegression()
 reg = filter(x_train, y_train)
+
+#perform logistic regression
+from sklearn.linear_model import LogisticRegression
+X = df.drop(['status' , 'salary'],axis=1).values
+print(X)
+Y = df['status'].values
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42)
+from sklearn.linear_model import LogisticRegression
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
