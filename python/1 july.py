@@ -50,13 +50,48 @@ df=pd.read_csv(r"C:\Users\DELL\Desktop\py c\Placement_Data.csv")
 # placed_science_students = len(science_students[science_students['status'] == 'Placed'])
 # placement_rate_science = (placed_science_students / total_students_science)
 # print("Placement rate for students with Science background in HSC:", placement_rate_science * 100, "%")
-cols = ['ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p']
-for c in cols:
-    sns.boxplot(x= c , data = df)
-    q1 = df[c].quantile(0.25)
-    q3 = df[c].quantile(0.75)
-    qm = q3 - q1
-    upper_limit = q3 + (1.5 * qm)
-    lower_limit = q1 - (1.5 * qm)
-    df = df[(df[c] < upper_limit) & (df[c] > lower_limit)]
-    plt.show()
+#cols = ['ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p']
+# for c in cols:
+#     sns.boxplot(x= c , data = df)
+#     q1 = df[c].quantile(0.25)
+#     q3 = df[c].quantile(0.75)
+#     qm = q3 - q1
+#     upper_limit = q3 + (1.5 * qm)
+#     lower_limit = q1 - (1.5 * qm)
+#     df = df[(df[c] < upper_limit) & (df[c] > lower_limit)]
+#     plt.show()
+# encoding
+
+from sklearn.preprocessing import LabelEncoder
+
+le=LabelEncoder()
+print(df['ssc_b'].unique())
+df['ssc_b']=le.fit_transform(df['ssc_b'])
+print(df['ssc_b'].unique())
+
+print(df.columns)
+
+col=['gender', 'hsc_b', 'hsc_s', 'degree_t', 'workex', 'specialisation','status']
+
+for c in col:
+    df[c] = le.fit_transform(df[c])
+    
+print(df)
+
+
+# x = df.drop(columns = ['salary'])
+# y = df['salary']
+
+x=df.iloc[ :,0:-1].values
+y=df.iloc[:,-1].values
+print(x)
+print(y)
+
+# x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=42)
+
+# from sklearn.preprocessing import StandardScaler
+ 
+# sc=StandardScaler()
+
+# x_train=sc.fit_transform(x_train)
+# print(x_train)
