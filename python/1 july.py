@@ -87,11 +87,16 @@ y=df.iloc[:,-1].values
 print(x)
 print(y)
 
-# x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=42)
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=42)
 
-# from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler
  
-# sc=StandardScaler()
+sc=StandardScaler()
 
-# x_train=sc.fit_transform(x_train)
-# print(x_train)
+x_train=sc.fit_transform(x_train)
+print(x_train)
+
+# perform linear regression
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression()
+reg = filter(x_train, y_train)
