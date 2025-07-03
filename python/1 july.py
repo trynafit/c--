@@ -10,8 +10,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 
 
-
-
 df=pd.read_csv(r"C:\Users\DELL\Desktop\py c\Placement_Data.csv")
 
 # print(df.head(4))
@@ -154,7 +152,7 @@ for c in cols:
     upper_limit = q3+(1.5*iqr)
     lower_limit = q1 - (1.5*iqr)
     df=df[(df[c] < upper_limit) & (df[c] > lower_limit)]
-    plt.show()
+    # plt.show()
 
 
 for c in df.select_dtypes(include='number').columns:
@@ -162,7 +160,7 @@ for c in df.select_dtypes(include='number').columns:
     plt.figure(figsize=(6, 4))
     sns.boxplot(y=df[c])
     plt.title(f"Boxplot of {c} (with outliers)")
-    plt.show()
+    # plt.show()
 
 
 print("Damn Again")
@@ -170,7 +168,7 @@ print("Damn Again")
 cols=[ 'ssc_p', 'hsc_p', 'etest_p',  'mba_p', 'salary','degree_p']
 for c in cols:
     sns.boxplot(y=c,data=df)
-    plt.show()
+    # plt.show()
 
 
 # encoding
@@ -181,6 +179,8 @@ le=LabelEncoder()
 print(df['ssc_b'].unique())
 df['ssc_b']=le.fit_transform(df['ssc_b'])
 print(df['ssc_b'].unique())
+
+print(df.info)
 
 print(df.columns)
 
@@ -216,8 +216,15 @@ x_test=sc.transform(x_test)
 reg=LinearRegression()
 reg.fit(x_train,y_train)
 
+print(reg.intercept_)
+print(reg.coef_)
+
 y_pred=reg.predict(x_test)
 print("y_pred",y_pred)
+
+print("y test",y_test)
+
+# evaluate model mse,rmse and r square
 
 r2_score=metrics.r2_score(y_test,y_pred)
 
@@ -233,6 +240,11 @@ print("mean squared error ",mse)
 x=df.drop(['status','salary'],axis=1).values
 print(x)
 
+y=df['status'].values
+print(y)
+
+# logistic regression
+
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.1,random_state=42)
 
 from sklearn.preprocessing import StandardScaler
@@ -247,6 +259,9 @@ x_test=sc.transform(x_test)
 
 #  logistic regression 
 
+print(y_train)
+print("y test",y_test)
+
 classifier=LogisticRegression()
 classifier.fit(x_train,y_train)
 x_train=sc.fit_transform(x_train)
@@ -256,5 +271,96 @@ x_test=sc.transform(x_test)
 y_pred=classifier.predict(x_test)
 print(y_pred)
 
+from sklearn.metrics import confusion_matrix
+
+print(confusion_matrix(y_test,y_pred))
+
+tn,fp,fn,tp=confusion_matrix(y_test,y_pred).ravel()
+
+sns.heatmap(confusion_matrix(y_test,y_pred),annot=True)
+plt.show()
+
+
 from sklearn.metrics import accuracy_score
 print(accuracy_score(y_test,y_pred))
+
+# from sklearn.metrics import roc_auc_score
+# roc_auc_score(y_test,y_pred)
+
+# find out recall and precision
+
+r=tp/(tp+fn)
+print(r)
+
+p=(tp/(tp+fp))
+print(y)
+
+# create classification report and understand each term in it
+from sklearn.metrics import classification_report
+print(classification_report(y_test,y_pred))
+
+
+f1_score=2*p*r/(p+r)
+print(f1_score)
+
+p_forClass0= tn/(tn+fn)
+print(p_forClass0)
+
+r_forClass0=tn / (tn+fp)
+print(r_forClass0)
+
+
+
+
+# decision tree
+
+x=df.drop(['status','salary'],axis=1).values
+print(x)
+
+y=df['status'].values
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.35,random_state=42)
+
+from sklearn.tree import DecisionTreeClassifier
+
+dc=DecisionTreeClassifier()
+dc.fit(x_train,y_train)
+y_pred=dc.predict(x_test)
+print(confusion_matrix(y_test,y_pred))
+print(accuracy_score(y_test,y_pred))
+y_pred_train=dc.predict(x_train)
+print(accuracy_score(y_train,y_pred_train))
+print(classification_report(y_test,y_pred))
+
+
+from sklearn import tree
+
+plt.figure(figsize=(20,20))
+tree.plot_tree(dc,feature_names=df.columns[:-2],class_names=['unplaced','placed'],filled=True)
+plt.show()
+#random forest
+# random forest
+n_estimators=[10,20,30,50,60,70,80,90,100,150]
+max_features=['sqrt','log2']
+max_depth=np.linspace(10,120,10 ,dtype=int)
+np.linspace(10,120,10)
+[int(x) for x in np.linspace(10,120,10)]
+np.linspace(10,120,10,dtype=int)
+criterion=['gini','entropy']
+min_samples_split=[2,4,6,8,10,12,14,16,18,20]
+random_grid={
+    'n_estimators':n_estimators,
+    'max_features':max_features,
+    'max_depth':max_depth,
+    'criterion':criterion,
+    'min_samples_split':min_samples_split}
+# clustering
+from sklearn.cluster import KMeans
+new_df = df
+kmeans = KMeans(3)
+kmeans.fit(new_df)
+new_df['cluster'] = kmeans.predict(new_df)
+new_df
+kmeans.inertia_
+new_df.reset_index(inplace=True)
